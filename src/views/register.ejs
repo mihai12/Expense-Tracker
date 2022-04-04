@@ -1,0 +1,43 @@
+<%- include('./layout/header'); -%>
+<main>
+    <div class="container">
+      <%- include('./layout/messages');%>
+        <form action="/register" method="POST">
+            <div class="form-group input-group">
+                
+                <input name="username"
+                  class="form-control <%=locals.errors && errors.includes('username') ? 'is-invalid' : ''%>"
+                  placeholder="Username (min 6 characters)" type="text"
+                  value="<%=locals.data && data.username ? data.username : '' %>">
+              </div> 
+              <div class="form-group input-group">
+              
+                <input name="email"
+                  class="form-control <%=locals.errors && errors.includes('email') ? 'is-invalid' : ''%>"
+                  placeholder="Email address" value="<%=locals.data && data.email ? data.email : '' %>">
+              </div> 
+
+              <div class="form-group input-group">
+               
+                <input class="form-control <%=locals.errors && errors.includes('password') ? 'is-invalid' : ''%>"
+                  name="password" placeholder="Create password (min 8 characters)" type="password"
+                  autocomplete="new-password" value="<%=locals.data && data.password ? data.password : '' %>">
+              </div> 
+              <div class="form-group input-group">
+               
+                <input class="form-control <%=locals.errors && errors.includes('password') ? 'is-invalid' : ''%>"
+                  name="confirmPassword" placeholder="Confirm password" type="password"
+                  value="<%=locals.data && data.confirmPassword ? data.confirmPassword : '' %>">
+              </div> 
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+              </div> 
+            
+              <p class="text-center">
+                <a class="btn btn-block btn-secondary" href="/login">Log In</a>
+              </p>
+        </form>
+    </div>
+ 
+ </main>
+<%- include('./layout/footer'); -%>

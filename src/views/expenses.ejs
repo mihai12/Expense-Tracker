@@ -1,0 +1,58 @@
+<%- include('./layout/header'); -%>
+  <main>
+    <div class="container">
+      <%- include('./layout/messages');%>
+      
+      <form action="/expenses" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" name="date" id="date" placeholder="Date">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="ammount">Ammount</label>
+            <input type="text" class="form-control" name="ammount" id="ammount" placeholder="Ammount">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" name="description" id="description" placeholder="Description">
+        </div>
+        <div class="form-group">
+          <label for="comments">Comments</label>
+          <textarea class="form-control" name="comments" id="comments" rows="3" placeholder="Comments"></textarea>
+        </div>
+        <input type="hidden" name="userId" value="<%- locals.user.id %>"/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+      <table class="table" id="data_table">
+        <thead>
+          <tr >
+            <th scope="col">Date (DD-MM-YYYY)</th>
+            <th scope="col">Ammount (lei)</th>
+            <th scope="col">Description</th>
+            <th scope="col">Comment</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <% expenses.forEach(function(expense) { %>
+          <tr id="row>"</tr>
+            <td id="date_row"><%=expense.date %></td>
+            <td id="amount_row"><%=expense.amount %></td>
+            <td id="description_row"><%=expense.description %></td>
+            <td><%=expense.comment %></td>
+            <td>
+              <input type="button" id="edit_button" value="Edit" class="edit">
+              <input type="button" id="save_button" value="Save" class="save"">
+              <input type="button" id="delete_button" value="Delete" class="delete"">
+              </td>
+          </tr>
+          <%  }); %>
+          <script>  </script>
+        </tbody>
+      </table>
+      <script type="text/javascript" src="/javascript/table.js"></script>
+    </div>
+  </main>
+  <%- include('./layout/footer'); -%>
